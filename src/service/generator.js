@@ -31,7 +31,7 @@ export const profileGenerator = () => {
         console.log(completion)
         response.value = JSON.parse(completion.choices[0].message.content)
       })
-      .catch()
+      .catch(() => alert("Uncaught error"))
       .finally(() => loading.value = false)
   }
 
