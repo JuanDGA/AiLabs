@@ -10,6 +10,7 @@ const client = new OpenAI({
 export const profileGenerator = () => {
   const loading = ref(false)
   const response = ref(configuration.profileTemplate)
+  const topic = ref("")
 
   const ask = () => {
     loading.value = true;
@@ -18,7 +19,7 @@ export const profileGenerator = () => {
       messages: [
         { 'role': 'system', 'content': configuration.prompt },
         { role: 'user', content: 'Profile json template: ' + JSON.stringify(configuration.profileTemplate) },
-        { 'role': 'user', 'content': 'kjdfhg' }
+        { 'role': 'user', 'content': 'Topic: ' + (topic.value ?? "random") }
       ],
       model: "gpt-3.5-turbo-1106",
       response_format: { type: "json_object" },
@@ -31,5 +32,5 @@ export const profileGenerator = () => {
       .finally(() => loading.value = false)
   }
 
-  return {loading, response, ask}
+  return {loading, response, topic, ask}
 }
