@@ -11,7 +11,7 @@ const defaultTopics = "Names:(Anderson,Bennett,Carter,Davis,Evans,Foster,Grayson
 
 export const profileGenerator = () => {
   const loading = ref(false)
-  const response = ref(configuration.profileTemplate)
+  const response = ref([])
   const query = ref("")
 
   const ask = () => {
@@ -21,15 +21,13 @@ export const profileGenerator = () => {
     client.chat.completions.create({
       messages: [
         { 'role': 'system', 'content': configuration.prompt },
-        { role: 'user', content: 'Profile json template: ' + JSON.stringify(configuration.profileTemplate) },
-        { 'role': 'user', 'content': userQuery }
+        { role: 'user', content: 'Topic/Name: ' + userQuery + ', Profile json template: ' + JSON.stringify(configuration.profileTemplate) }
       ],
       model: "gpt-3.5-turbo-1106",
       response_format: { type: "json_object" },
     })
       .then((completion) => {
-        console.log(completion)
-        response.value = JSON.parse(completion.choices[0].message.content)
+        response.value.unshift(JSON.parse(completion.choices[0].message.content))
       })
       .catch(() => alert("Uncaught error"))
       .finally(() => loading.value = false)

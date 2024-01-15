@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <div v-if="ready" class="max-w-md bg-white p-8 rounded shadow-lg">
+  <div v-if="ready" class="bg-white p-8 rounded shadow-lg">
     <div class="text-center">
       <h2 class="text-xl font-semibold text-gray-800">{{ profile.name }}</h2>
       <h2 class="text-xl font-semibold text-gray-800">{{ profile.last_name }}</h2>

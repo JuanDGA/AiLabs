@@ -23,8 +23,10 @@
         </button>
       </div>
 
-      <div class="mt-8">
-        <ProfileCard v-if="response" :profile="response" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 my-2">
+        <div v-for="(profile, index) in response" :key="index">
+          <ProfileCard :profile="profile" />
+        </div>
       </div>
     </div>
   </div>
