@@ -8,7 +8,10 @@ import { ideaGenerator } from '@/service/ideaGenerator.js'
 const { loading, response, ask } = profileGenerator();
 const { getIdea } = ideaGenerator();
 
-const query = ref("")
+const query = ref("");
+
+const hasBeenUsed = ref(false);
+const userInput = ref();
 
 const generateProfile = async () => {
   loading.value = true;
@@ -16,17 +19,18 @@ const generateProfile = async () => {
   if (queryValue.trim().length === 0) {
     queryValue = await getIdea()
   }
-  ask(queryValue);
+  await ask(queryValue);
+  hasBeenUsed.value = true;
 }
 
 watch(response, () => {
   query.value = "";
-}, {deep: true})
+}, {deep: true});
 
 </script>
 
 <template>
-  <MainBanner />
+  <MainBanner :collapsed="hasBeenUsed" />
   <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
     <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
       Just imagine something... Anything could be a character!
@@ -40,6 +44,7 @@ watch(response, () => {
         placeholder="Just free your mind here..."
         :disabled="loading"
         type="text"
+        ref="userInput"
       />
       <button
         @click="generateProfile"
@@ -51,10 +56,30 @@ watch(response, () => {
     </div>
   </section>
   <div>
-    <section class="flex flex-wrap gap-8 justify-center p-8">
-      <div v-for="(profile, index) in response" :key="index">
+    <TransitionGroup tag="section" name="list" class="flex flex-wrap gap-8 justify-center p-8">
+      <div v-for="profile in response" :key="profile.name">
         <ProfileCard :profile="profile" />
       </div>
-    </section>
+    </TransitionGroup>
   </div>
 </template>
+
+<style scoped>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>

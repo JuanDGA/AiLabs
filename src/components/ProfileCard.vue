@@ -13,6 +13,9 @@ const props = defineProps({
 const profile = computed(() => props.profile);
 
 const ready = computed(() => Object.keys(props.profile).includes("age") && props.profile.age > 0);
+
+const type = computed(() =>  props.profile.type.toLowerCase().includes("human") ? "🧑" : lodash.startCase(props.profile.type));
+
 </script>
 
 <template>
@@ -23,7 +26,7 @@ const ready = computed(() => Object.keys(props.profile).includes("age") && props
   >
     <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
       <h3 class="font-semibold tracking-tight text-lg">
-        {{ profile.name }} {{ profile.last_name }} - {{ lodash.startCase(profile.type) }}
+        {{ profile.name }} {{ profile.last_name }} - {{ type }}
       </h3>
       <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
     </div>

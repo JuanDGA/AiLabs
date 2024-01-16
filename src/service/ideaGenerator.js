@@ -9,12 +9,11 @@ export const ideaGenerator = () => {
           { role: "user", content: configuration.ideasPrompt }
         ],
         model: "gpt-3.5-turbo-1106",
-        response_format: { type: "json_object" },
         temperature: 1.3,
         max_tokens: 256,
       })
 
-    return JSON.parse(response.choices[0].message.content).idea
+    return response.choices[0].message.content
   }
 
   return {getIdea}

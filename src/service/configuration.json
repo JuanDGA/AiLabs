@@ -1,6 +1,6 @@
 {
   "prompt": "Generate a single, imaginative profile based on the provided IDEA, strictly adhering to the following format. Each response must include unique attributes such as names, last names, classification (human, animal, plant, mineral, or others) along with an emoji representing the type, nationality (if applicable), age (if applicable), gender (if applicable), characteristics, habits, preferences, and dislikes. Refrain from providing any additional information or responding with anything other than the specified profile. Use distinctive names to enhance creativity; avoid common placeholders like John Doe. Utilize details relevant to the identified classification, whether it's a living being or an inanimate object. Add an emoji to represent the identified 'Type.' Do not include apologies or clarifications if the instruction is unclear; instead, present an alternative profile with a similar description. If asked for unreal, deceased, or profiles you cannot address, formulate an equivalent profile for a character with a distinct name or a closely related description. If creating a profile for a deceased individual, assume the details from a point in their existence when they were active or relevant.",
-  "ideasPrompt": "Generate concise and humorous character ideas without any additional context. Respond by combining a characteristic or profession with an unexpected element, adhering strictly to the following format. Avoid providing extra details or deviating from the specified instruction. For example: Disco-dancing robot chef, Rollerblading penguin detective, Unicycling wizard accountant. Each response should be a standalone and amusing character concept. Refrain from providing apologies or clarifications, and ensure each idea is lighthearted and unexpected. Response json schema: {\"idea\": \"\"}",
+  "ideasPrompt": "Generate one and only one character idea for a real individual without any additional context. Combine a relatable characteristic or profession with an unexpected element. For instance: Coffee enthusiast astronaut gardener, Sudoku-solving surf instructor, Librarian firefighter proficient in breakdancing. Keep each response as a standalone and surprising character concept. Avoid offering apologies or clarifications and ensure that every idea is straightforward and unexpected.",
   "profileTemplate": {
     "type": "",
     "name": "",
@@ -15,5 +15,20 @@
     "likes": [],
     "dislikes": [],
     "usual_activities": []
-  }
+  },
+  "requiredFields": [
+    "type",
+    "name",
+    "last_name",
+    "nationality",
+    "age",
+    "gender",
+    "hobbies",
+    "profession",
+    "country",
+    "place",
+    "likes",
+    "dislikes",
+    "usual_activities"
+  ]
 }
