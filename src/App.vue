@@ -36,9 +36,7 @@ watch(
   <MainBanner :collapsed="hasBeenUsed" />
   <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
     <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
-      Just imagine something... Anything could be a character! ¿A gold ingot? Yes! ¿Purple wood
-      piece? Of course! Wanna some help to imagine ideas? Then, leave the field empty and be ready
-      to be surprised.
+      Just imagine something... Anything could be a character! Leave the field empty to be surprised.
     </p>
     <div class="flex flex-col md:flex-row gap-4 px-5 items-center justify-center">
       <input
