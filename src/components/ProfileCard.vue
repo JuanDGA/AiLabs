@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import configuration from "../service/configuration.json";
+import lodash from 'lodash'
 
 const props = defineProps({
   profile: {
@@ -22,7 +23,7 @@ const ready = computed(() => Object.keys(props.profile).includes("age") && props
   >
     <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
       <h3 class="font-semibold tracking-tight text-lg">
-        {{ profile.name }} {{ profile.last_name }} {{ profile.emoji }}
+        {{ profile.name }} {{ profile.last_name }} - {{ lodash.startCase(profile.type) }}
       </h3>
       <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
     </div>
