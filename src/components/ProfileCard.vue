@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import configuration from "../service/configuration.json";
-import lodash from 'lodash'
+import lodash from "lodash";
 
 const props = defineProps({
   profile: {
@@ -14,8 +14,9 @@ const profile = computed(() => props.profile);
 
 const ready = computed(() => Object.keys(props.profile).includes("age") && props.profile.age > 0);
 
-const type = computed(() =>  props.profile.type.toLowerCase().includes("human") ? "🧑" : lodash.startCase(props.profile.type));
-
+const type = computed(() =>
+  props.profile.type.toLowerCase().includes("human") ? "🧑" : lodash.startCase(props.profile.type),
+);
 </script>
 
 <template>
