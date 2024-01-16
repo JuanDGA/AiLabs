@@ -1,75 +1,134 @@
 <script setup>
-  import { computed } from 'vue'
-  import configuration from "../service/configuration.json"
+import { computed } from "vue";
+import configuration from "../service/configuration.json";
 
-  const props = defineProps({
-    profile: {
-      type: Object,
-      default: configuration.profileTemplate
-    }
-  })
+const props = defineProps({
+  profile: {
+    type: Object,
+    default: configuration.profileTemplate,
+  },
+});
 
-  const profile = computed(() => props.profile)
+const profile = computed(() => props.profile);
 
-  const ready = computed(() => Object.keys(props.profile).includes("age") && props.profile.age > 0)
+const ready = computed(() => Object.keys(props.profile).includes("age") && props.profile.age > 0);
 </script>
 
 <template>
-  <div v-if="ready" class="bg-white p-8 rounded shadow-lg">
-    <div class="text-center">
-      <h2 class="text-xl font-semibold text-gray-800">{{ profile.name }}</h2>
-      <h2 class="text-xl font-semibold text-gray-800">{{ profile.last_name }}</h2>
-      <p class="text-sm text-gray-500">{{ profile.nationality }}</p>
+  <div
+    v-if="ready"
+    class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
+    data-v0-t="card"
+  >
+    <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
+      <h3 class="font-semibold tracking-tight text-lg">
+        {{ profile.name }} {{ profile.last_name }} {{ profile.emoji }}
+      </h3>
+      <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
     </div>
-
-    <div class="mt-6">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <h3 class="text-gray-700 text-sm">Age</h3>
-          <p class="text-gray-800">{{ profile.age }}</p>
+    <div class="p-6 space-y-4">
+      <div class="grid grid-cols-2 gap-2">
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="nationality"
+          >
+            Nationality
+          </label>
+          <p id="nationality" class="text-sm">
+            {{ profile.nationality }}
+          </p>
         </div>
-        <div>
-          <h3 class="text-gray-700 text-sm">Gender</h3>
-          <p class="text-gray-800">{{ profile.gender }}</p>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="age"
+          >
+            Age
+          </label>
+          <p id="age" class="text-sm">
+            {{ profile.age }}
+          </p>
+        </div>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="gender"
+          >
+            Gender
+          </label>
+          <p id="gender" class="text-sm">
+            {{ profile.gender }}
+          </p>
+        </div>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="hobbies"
+          >
+            Hobbies
+          </label>
+          <p id="hobbies" class="text-sm">
+            {{ profile.hobbies.join(", ") }}
+          </p>
         </div>
       </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Hobbies</h3>
-        <ul class="list-disc list-inside text-gray-800">
-          <li v-for="hobby in profile.hobbies" :key="hobby">{{ hobby }}</li>
-        </ul>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="country"
+          >
+            Country
+          </label>
+          <p id="country" class="text-sm">
+            {{ profile.country }}
+          </p>
+        </div>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="place"
+          >
+            Place
+          </label>
+          <p id="place" class="text-sm">
+            {{ profile.place }}
+          </p>
+        </div>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="likes"
+          >
+            Likes
+          </label>
+          <p id="likes" class="text-sm">
+            {{ profile.likes.join(", ") }}
+          </p>
+        </div>
+        <div class="space-y-1">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="dislikes"
+          >
+            Dislikes
+          </label>
+          <p id="dislikes" class="text-sm">
+            {{ profile.dislikes.join(", ") }}
+          </p>
+        </div>
       </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Profession</h3>
-        <p class="text-gray-800">{{ profile.profession }}</p>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Location</h3>
-        <p class="text-gray-800">{{ profile.country }}</p>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Likes</h3>
-        <ul class="list-disc list-inside text-gray-800">
-          <li v-for="like in profile.likes" :key="like">{{ like }}</li>
-        </ul>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Dislikes</h3>
-        <ul class="list-disc list-inside text-gray-800">
-          <li v-for="dislike in profile.dislikes" :key="dislike">{{ dislike }}</li>
-        </ul>
-      </div>
-
-      <div class="mt-4">
-        <h3 class="text-gray-700 text-sm">Activities</h3>
-        <ul class="list-disc list-inside text-gray-800">
-          <li v-for="activity in profile.usual_activities" :key="activity">{{ activity }}</li>
-        </ul>
+      <div class="space-y-1">
+        <label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="activities"
+        >
+          Usual Activities
+        </label>
+        <p id="activities" class="text-sm">
+          {{ profile.usual_activities.join(", ") }}
+        </p>
       </div>
     </div>
   </div>

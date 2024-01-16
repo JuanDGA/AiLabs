@@ -1,34 +1,36 @@
 <script setup>
-  import { profileGenerator } from '@/service/generator.js'
-  import ProfileCard from '@/components/ProfileCard.vue'
+import { profileGenerator } from "@/service/generator.js";
+import ProfileCard from "@/components/ProfileCard.vue";
+import MainBanner from "@/components/MainBanner.vue";
 
-  const {loading, query, response, ask} = profileGenerator();
+const { loading, query, response, ask } = profileGenerator();
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto p-4">
-      <h1 class="text-3xl font-semibold mb-2">Profile Cards Generator</h1>
-      <h3 class="font-medium text-gray-500 mb-4">To start, please press the generate button</h3>
-      <label class="text-lg font-semibold">Topic/Name:</label>
-      <input class="w-full border rounded-md p-2 mt-4 mb-1 focus:outline-none focus:border-blue-500" v-model="query" placeholder="Enter a topic or name" :disabled="loading">
-      <h3 class="text-gray-500 mb-3">Default: Random</h3>
-      <div class="flex justify-center">
-        <button
-          class="bg-blue-500 text-white font-bold rounded-lg px-4 py-2 cursor-pointer hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-blue-400"
-          @click="ask"
-          :disabled="loading"
-        >
-          {{ loading ? 'Generating...' : 'Generate' }}
-        </button>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 my-2">
-        <div v-for="(profile, index) in response" :key="index">
-          <ProfileCard :profile="profile" />
-        </div>
-      </div>
+  <MainBanner />
+  <section class="mx-auto container md:px-6 py-5 md:py-8 lg:py-12">
+    <div class="flex flex-col md:flex-row gap-2 items-center justify-center">
+      <input
+        v-model="query"
+        class="w-96 flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"
+        placeholder="Write down your idea here... Or leave it empty to be surprised"
+        :disabled="loading"
+        type="text"
+      />
+      <button
+        @click="ask"
+        :disabled="loading"
+        class="px-6 py-2 bg-gray-800 text-yellow-400 rounded-lg font-bold"
+      >
+        {{ loading ? "Generating..." : "Generate" }}
+      </button>
     </div>
+  </section>
+  <div>
+    <section class="flex flex-wrap gap-8 justify-center p-8">
+      <div v-for="(profile, index) in response" :key="index">
+        <ProfileCard :profile="profile" />
+      </div>
+    </section>
   </div>
 </template>
-
