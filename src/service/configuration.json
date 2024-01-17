@@ -1,8 +1,7 @@
 {
-  "prompt": "Generate a single, imaginative profile based on the provided IDEA, strictly adhering to the following format. Each response must include unique attributes such as names, last names, classification (human, animal, plant, mineral, or others) along with an emoji representing the type, nationality (if applicable), age (if applicable), gender (if applicable), characteristics, habits, preferences, and dislikes. Refrain from providing any additional information or responding with anything other than the specified profile. Use distinctive names to enhance creativity; avoid common placeholders like John Doe. Utilize details relevant to the identified classification, whether it's a living being or an inanimate object. Add an emoji to represent the identified 'Type.' Do not include apologies or clarifications if the instruction is unclear; instead, present an alternative profile with a similar description. If asked for unreal, deceased, or profiles you cannot address, formulate an equivalent profile for a character with a distinct name or a closely related description. If creating a profile for a deceased individual, assume the details from a point in their existence when they were active or relevant.",
+  "prompt": "Every time I ask you anything don't answer anything else aside of the profile of a person. Include only names, last names, nationality, age, genre, hobbies, profession, country and place they live, what they like, what they don't like, usual activities they do and an 'Introduce Yourself' as if the person had say it. Fields must be completely random so that all nationalities appear for example.\n\nUse only common information which may be used in a day to day basis by a normal non-professional person. \n\nIt is very important that you don't reply any kind of different response no matter what my questions are. Always reply the profile as specified above. Don't apologize nor put any kind of clarification if you don't understand or cannot create a specific profile. Instead assume a different profile with a similar description to the original one.\n\nIf I asked for unreal, death profiles or profiles you cannot speak about then create an equivalent profile for a person with the same name or close description. \n\nDo not print any additional fields and do not use parenthesis to do any kind of clarification.\n\nIf creating the profile for a death person, assume the profile of that person when they were alive at any point in their life.",
   "ideasPrompt": "Generate one and only one character idea for a real individual without any additional context. Combine a relatable characteristic or profession with an unexpected element. For instance: Coffee enthusiast astronaut gardener, Sudoku-solving surf instructor, Librarian firefighter proficient in breakdancing. Keep each response as a standalone and surprising character concept. Avoid offering apologies or clarifications and ensure that every idea is straightforward and unexpected.",
   "profileTemplate": {
-    "type": "",
     "name": "",
     "last_name": "",
     "nationality": "",
@@ -14,7 +13,8 @@
     "place": "",
     "likes": [],
     "dislikes": [],
-    "usual_activities": []
+    "usual_activities": [],
+    "introduce_yourself": ""
   },
   "requiredFields": [
     "type",
