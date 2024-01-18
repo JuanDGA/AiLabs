@@ -29,14 +29,14 @@ export const generateSpeech = () => {
       loading.value = true;
       const blob = new Blob([await getSpeech(text, gender)]);
       audio.value.src = URL.createObjectURL(blob);
-      audio.value.addEventListener("ended", () => playing.value = false);
       audio.value.load();
       audio.value.play();
-      playing.value = true;
+      audio.value.addEventListener("ended", () => playing.value = false);
       loading.value = false;
     } else {
       audio.value.play();
     }
+    playing.value = true;
   }
 
   const pause = () => {

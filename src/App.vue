@@ -55,32 +55,11 @@ watch(
         {{ loading ? "Generating..." : "Generate" }}
       </button>
     </div>
+    <p v-if="hasBeenUsed" class="text-center font-light mt-2">You can click a profile to find an "Introduce yourself"</p>
   </section>
   <div>
     <TransitionGroup tag="section" name="list" class="flex flex-wrap gap-8 justify-center p-8">
-      <div v-for="profile in response" :key="profile.name">
-        <ProfileCard :profile="profile" />
-      </div>
+      <ProfileCard v-for="profile in response" :key="profile.name" :profile="profile" />
     </TransitionGroup>
   </div>
 </template>
-
-<style scoped>
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
-  position: absolute;
-}
-</style>

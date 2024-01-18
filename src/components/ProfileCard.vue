@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import configuration from "../service/configuration.json";
 import lodash from "lodash";
 import FlippableComponent from '@/components/FlippableComponent.vue'
@@ -27,18 +27,18 @@ const handleListening = () => {
 </script>
 
 <template>
-  <div
-    class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
-    data-v0-t="card"
-  >
-    <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
-      <h3 class="font-semibold tracking-tight text-lg">
-        {{ profile.name }} {{ profile.last_name }}
-      </h3>
-      <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
-    </div>
-    <flippable-component>
-      <template #front>
+  <flippable-component>
+    <template #front>
+      <div
+        class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
+        data-v0-t="card"
+      >
+        <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
+          <h3 class="font-semibold tracking-tight text-lg">
+            {{ profile.name }} {{ profile.last_name }}
+          </h3>
+          <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
+        </div>
         <div class="p-6 space-y-4">
           <div class="grid grid-cols-2 gap-2">
             <div class="space-y-1">
@@ -146,8 +146,13 @@ const handleListening = () => {
             </p>
           </div>
         </div>
-      </template>
-      <template #back>
+      </div>
+    </template>
+    <template #back>
+      <div
+        class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
+        data-v0-t="card"
+      >
         <div class="p-6 space-y-4">
           <audio class="hidden" ref="audio"></audio>
           <p>{{profile.introduce_yourself}}</p>
@@ -155,7 +160,7 @@ const handleListening = () => {
             {{ loading ? 'Generating...' : playing ? 'Pause': 'Listen'}}
           </button>
         </div>
-      </template>
-    </flippable-component>
-  </div>
+      </div>
+    </template>
+  </flippable-component>
 </template>
