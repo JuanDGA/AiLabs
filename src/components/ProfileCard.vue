@@ -94,7 +94,7 @@ const handleListening = () => {
               >
                 Hobbies
               </label>
-              <ul id="hobbies" class="text-sm">
+              <ul id="hobbies" class="px-3 text-sm list-disc">
                 <li v-for="(hobby, index) in profile.hobbies" :key="index">
                   {{ lodash.startCase(hobby) }}
                 </li>
@@ -118,9 +118,11 @@ const handleListening = () => {
               >
                 Likes
               </label>
-              <p id="likes" class="text-sm">
-                {{ profile.likes.join(", ") }}
-              </p>
+              <ul id="likes" class="px-3 text-sm list-disc">
+                <li v-for="(like, index) in profile.likes" :key="index">
+                  {{ lodash.startCase(like) }}
+                </li>
+              </ul>
             </div>
             <div class="space-y-1">
               <label
@@ -129,9 +131,11 @@ const handleListening = () => {
               >
                 Dislikes
               </label>
-              <p id="dislikes" class="text-sm">
-                {{ profile.dislikes.join(", ") }}
-              </p>
+              <ul id="dislikes" class="px-3 text-sm list-disc">
+                <li v-for="(dislike, index) in profile.dislikes" :key="index">
+                  {{ lodash.startCase(dislike) }}
+                </li>
+              </ul>
             </div>
           </div>
           <div class="space-y-1">
@@ -139,11 +143,13 @@ const handleListening = () => {
               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="activities"
             >
-              Usual Activities
+              Activities
             </label>
-            <p id="activities" class="text-sm">
-              {{ profile.usual_activities.join(", ") }}
-            </p>
+            <ul id="activities" class="px-3 text-sm list-disc">
+              <li v-for="(activity, index) in profile.usual_activities" :key="index">
+                {{ lodash.startCase(activity) }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
