@@ -1,8 +1,8 @@
-import configuration from "./configuration.json";
-import client from "./openaiClient.js";
+import configuration from "../configuration.json";
+import client from "../openaiClient.js";
 import { ref } from "vue";
 
-const doRequest = (userQuery, additionalMessages = []) => {
+const doRequest = (userQuery) => {
   return client.chat.completions.create({
     messages: [
       {
@@ -10,12 +10,11 @@ const doRequest = (userQuery, additionalMessages = []) => {
         content:
           configuration.prompt +
           "\nProfile json schema: " +
-          JSON.stringify(configuration.profileTemplate) +
+          JSON.stringify(configuration.profiles.profileTemplate) +
           "\nRequired fields: " +
-          JSON.stringify(configuration.requiredFields),
+          JSON.stringify(configuration.profiles.requiredFields),
       },
-      { role: "user", content: userQuery },
-      ...additionalMessages,
+      { role: "user", content: userQuery }
     ],
     model: "gpt-3.5-turbo-1106",
     temperature: 1.3,
@@ -24,7 +23,7 @@ const doRequest = (userQuery, additionalMessages = []) => {
 };
 
 const validateProfile = (response) => {
-  const schema = configuration.profileTemplate;
+  const schema = configuration.profiles.profileTemplate;
   const responseKeys = Object.keys(response);
 
   let validStructure = true;

@@ -1,7 +1,7 @@
 <script setup>
-  import { ref } from 'vue'
+import { ref } from "vue";
 
-  const flipped = ref(false);
+const flipped = ref(false);
 </script>
 
 <template>

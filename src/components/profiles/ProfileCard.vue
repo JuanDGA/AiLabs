@@ -1,9 +1,9 @@
 <script setup>
-import { computed } from 'vue'
-import configuration from "../service/configuration.json";
+import { computed } from "vue";
+import configuration from "../../service/configuration.json";
 import lodash from "lodash";
-import FlippableComponent from '@/components/FlippableComponent.vue'
-import { generateSpeech } from '@/service/speechGenerator.js'
+import FlippableComponent from "@/components/profiles/FlippableComponent.vue";
+import { generateSpeech } from "@/service/speechGenerator.js";
 
 const props = defineProps({
   profile: {
@@ -14,7 +14,7 @@ const props = defineProps({
 
 const profile = computed(() => props.profile);
 
-const {loading, audio, playing, play, pause} = generateSpeech();
+const { loading, audio, playing, play, pause } = generateSpeech();
 
 const handleListening = () => {
   if (playing.value) {
@@ -22,8 +22,7 @@ const handleListening = () => {
   } else {
     play(profile.value.introduce_yourself, profile.value.gender);
   }
-}
-
+};
 </script>
 
 <template>
@@ -161,9 +160,13 @@ const handleListening = () => {
       >
         <div class="p-6 space-y-4">
           <audio class="hidden" ref="audio"></audio>
-          <p>{{profile.introduce_yourself}}</p>
-          <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-xl" @click.stop="handleListening" :disabled="loading">
-            {{ loading ? 'Generating...' : playing ? 'Pause': 'Listen'}}
+          <p>{{ profile.introduce_yourself }}</p>
+          <button
+            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-xl"
+            @click.stop="handleListening"
+            :disabled="loading"
+          >
+            {{ loading ? "Generating..." : playing ? "Pause" : "Listen" }}
           </button>
         </div>
       </div>
