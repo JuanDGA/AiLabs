@@ -34,9 +34,9 @@ import KatakanaCard from '@/components/japanese/KatakanaCard.vue'
     </button>
   </div>
   <div>
-    <TransitionGroup tag="section" name="list" class="flex flex-wrap gap-8 justify-center p-8">
+    <section class="flex flex-wrap gap-8 justify-center p-8">
       <KatakanaCard v-for="katakana in response" :key="katakana.katakana" :katakana="katakana" />
-    </TransitionGroup>
+    </section>
   </div>
 </template>
 
