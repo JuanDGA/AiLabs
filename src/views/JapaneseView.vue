@@ -19,7 +19,7 @@ import KatakanaCard from '@/components/japanese/KatakanaCard.vue'
     <input
       v-model="name"
       class="flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"
-      placeholder="Just free your mind here..."
+      placeholder="Enter you name"
       :disabled="loading"
       type="text"
       maxlength="50"
