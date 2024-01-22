@@ -1,20 +1,20 @@
 <script setup>
-import { computed } from 'vue'
-import configuration from "../service/configuration.json";
+import { computed } from "vue";
+import configuration from "../../service/configuration.json";
 import lodash from "lodash";
-import FlippableComponent from '@/components/FlippableComponent.vue'
-import { generateSpeech } from '@/service/speechGenerator.js'
+import FlippableComponent from "@/components/profiles/FlippableComponent.vue";
+import { generateSpeech } from "@/service/speechGenerator.js";
 
 const props = defineProps({
   profile: {
     type: Object,
-    default: configuration.profileTemplate,
+    default: configuration.profiles.profileTemplate,
   },
 });
 
 const profile = computed(() => props.profile);
 
-const {loading, audio, playing, play, pause} = generateSpeech();
+const { loading, audio, playing, play, pause } = generateSpeech();
 
 const handleListening = () => {
   if (playing.value) {
@@ -22,22 +22,20 @@ const handleListening = () => {
   } else {
     play(profile.value.introduce_yourself, profile.value.gender);
   }
-}
-
+};
 </script>
 
 <template>
   <flippable-component>
     <template #front>
       <div
-        class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
-        data-v0-t="card"
+        class="rounded-lg rounded-tr-3xl border bg-purple-100 shadow-2xl w-full max-w-md" style="width: 90vw; height: 800px"
       >
-        <div class="flex-col space-y-1.5 p-6 flex items-center gap-4">
+        <div class="flex-col p-3 flex items-center gap-2">
           <h3 class="font-semibold tracking-tight text-lg">
             {{ profile.name }} {{ profile.last_name }}
           </h3>
-          <p class="text-muted-foreground text-sm">{{ profile.profession }}</p>
+          <p class="text-sm">{{ profile.profession }}</p>
         </div>
         <div class="p-6 space-y-4">
           <div class="grid grid-cols-2 gap-2">
@@ -156,14 +154,23 @@ const handleListening = () => {
     </template>
     <template #back>
       <div
-        class="rounded-lg border bg-yellow-50 text-card-foreground shadow-sm w-full max-w-md"
-        data-v0-t="card"
+        class="rounded-lg rounded-tl-3xl border bg-purple-100 shadow-2xl w-full max-w-md" style="height: 800px"
       >
+        <div class="flex-col p-3 flex items-center gap-2">
+          <h3 class="font-semibold tracking-tight text-lg">
+            {{ profile.name }} {{ profile.last_name }}
+          </h3>
+          <p class="text-sm">Presentation</p>
+        </div>
         <div class="p-6 space-y-4">
           <audio class="hidden" ref="audio"></audio>
-          <p>{{profile.introduce_yourself}}</p>
-          <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-xl" @click.stop="handleListening" :disabled="loading">
-            {{ loading ? 'Generating...' : playing ? 'Pause': 'Listen'}}
+          <p>{{ profile.introduce_yourself }}</p>
+          <button
+            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-xl"
+            @click.stop="handleListening"
+            :disabled="loading"
+          >
+            {{ loading ? "Generating..." : playing ? "Pause" : "Listen" }}
           </button>
         </div>
       </div>
