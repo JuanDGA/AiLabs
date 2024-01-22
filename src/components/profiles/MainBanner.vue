@@ -14,7 +14,7 @@ const title = ref("Profile It");
 </script>
 
 <template>
-  <transition-group tag="div" name="list">
+  <transition tag="div" name="banner">
     <header v-if="isCollapsed" class="w-full bg-pink-400 py-4 px-4 flex justify-between items-center" key="header">
       <h1 class="text-lg font-bold tracking-tighter text-[#1f2937]">{{ title }}</h1>
       <router-link to="/" class="text-[#1f2937] font-bold">Home</router-link>
@@ -33,25 +33,31 @@ const title = ref("Profile It");
       </div>
       <router-link to="/" class="text-[#1f2937] font-semibold absolute top-5 right-5">Home</router-link>
     </section>
-  </transition-group>
+  </transition>
 </template>
 
-<style scoped>
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
+<style>
+.banner-enter-active,
+.banner-leave-active {
+  transition: all 0.75s ease-out;
 }
 
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
+.banner-enter-to {
+  top: 0;
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
+.banner-enter-from {
   position: absolute;
+  top: -100%;
+}
+
+.banner-leave-to {
+  position: absolute;
+  top: -100%;
+}
+
+.banner-leave-from {
+  position: absolute;
+  top: 0;
 }
 </style>

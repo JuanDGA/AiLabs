@@ -1,6 +1,8 @@
 import configuration from "../configuration.json";
 import client from "../openaiClient.js";
 import { ref } from "vue";
+import { useProfilesStore } from "@/stores/profilesStore.js";
+import { storeToRefs } from "pinia";
 
 const doRequest = (userQuery) => {
   return client.chat.completions.create({
@@ -8,7 +10,7 @@ const doRequest = (userQuery) => {
       {
         role: "system",
         content:
-          configuration.prompt +
+          configuration.profiles.prompt +
           "\nProfile json schema: " +
           JSON.stringify(configuration.profiles.profileTemplate) +
           "\nRequired fields: " +
@@ -36,8 +38,9 @@ const validateProfile = (response) => {
 };
 
 export const profileGenerator = () => {
+  const {addProfile} = useProfilesStore();
+
   const loading = ref(false);
-  const response = ref([]);
 
   const ask = async (userQuery) => {
     loading.value = true;
@@ -48,7 +51,7 @@ export const profileGenerator = () => {
         const profile = JSON.parse(completion.choices[0].message.content);
 
         if (validateProfile(profile)) {
-          response.value.unshift(profile);
+          addProfile(profile);
           done = true;
         }
       } catch (error) {
@@ -58,5 +61,5 @@ export const profileGenerator = () => {
     loading.value = false;
   };
 
-  return { loading, response, ask };
+  return { loading, ask };
 };
