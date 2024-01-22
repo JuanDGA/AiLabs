@@ -9,7 +9,7 @@
       <p class="text-xl text-purple-500 mt-4">Exploring the Future of Artificial Intelligence</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <ToolCard title="ProfileIt" description="Get random person profile, or convert any idea into one." to="/profiles" />
+      <ToolCard title="ProfileIt" description="Get a random person profile, or convert any idea into one." to="/profiles" />
       <ToolCard title="Japanese" description="Learn how to write your name and how to introduce yourself in japanese" to="/japanese" />
       <ToolCard title="DayToDay" description="Get images of random day to day life objects." to="/objects" />
     </div>

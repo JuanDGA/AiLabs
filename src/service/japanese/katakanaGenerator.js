@@ -1,6 +1,7 @@
 import client from '@/service/openaiClient.js'
 import configuration from '@/service/configuration.json'
 import { ref } from 'vue'
+import { useJapaneseStore } from '@/stores/japaneseStore.js'
 
 const doRequest = (name) => {
   return client.chat.completions.create({
@@ -21,7 +22,7 @@ const doRequest = (name) => {
 
 export const katakanaGenerator = () => {
   const loading = ref(false);
-  const response = ref([]);
+  const {addKatakana} = useJapaneseStore();
 
   const ask = async (name) => {
     loading.value = true;
@@ -30,7 +31,7 @@ export const katakanaGenerator = () => {
       try {
         const completion = await doRequest(name);
         const katakana = JSON.parse(completion.choices[0].message.content);
-        response.value.unshift(katakana);
+        addKatakana(katakana);
         done = true;
       } catch (error) {
         console.error(error);
@@ -39,5 +40,5 @@ export const katakanaGenerator = () => {
     loading.value = false;
   };
 
-  return { loading, response, ask };
+  return { loading, ask };
 };

@@ -1,6 +1,7 @@
 <script setup>
   import { generateSpeech } from '@/service/speechGenerator.js'
   import { computed } from 'vue'
+  import GIcon from '@/components/common/GIcon.vue'
 
   const props = defineProps({
     index: {
@@ -27,18 +28,19 @@
 </script>
 
 <template>
-  <div class="border p-4 rounded-md bg-gray-200">
+  <div class="border p-4 rounded-md bg-gray-200 relative">
     <p class="text-base font-semibold mb-2">{{ index }}. Japanese Sentence:</p>
     <p class="text-lg">{{ sentence.japanese }}</p>
     <p class="text-base font-semibold mt-2">English Translation:</p>
     <p class="text-lg">{{ sentence.english }}</p>
     <audio ref="audio" class="hidden" />
     <button
-      class="mt-2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:shadow-outline-green active:bg-green-800"
       @click="handleListening"
-      :disabled="loading"
+      class="absolute top-1 right-1 p-1 bg-blue-100 text-black rounded-full hover:bg-blue-200 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300 ease-in-out"
     >
-      {{ loading ? "Generating" : playing ? "Pause" : "Listen" }} sentence {{ index }}
+      <GIcon v-if="loading" icon="hourglass_empty" />
+      <GIcon v-else-if="playing" icon="pause" />
+      <GIcon v-else icon="volume_up" />
     </button>
   </div>
 </template>

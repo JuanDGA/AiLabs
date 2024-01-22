@@ -48,7 +48,7 @@ watch(loading, (value) => {
 </script>
 
 <template>
-  <div class="min-h-screen max-w-full">
+  <div class="min-h-screen max-w-full bg-pink-50">
     <MainBanner :collapsed="hasBeenUsed" />
     <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
       <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
