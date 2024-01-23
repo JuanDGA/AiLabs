@@ -1,31 +1,17 @@
 <script setup>
-import { profileGenerator } from "@/service/profiles/profileGenerator.js";
 import ProfileCard from "@/components/profiles/ProfileCard.vue";
 import MainBanner from "@/components/profiles/MainBanner.vue";
 import { ref, watch } from "vue";
-import { ideaGenerator } from "@/service/profiles/ideaGenerator.js";
 import { useProfilesStore } from "@/stores/profilesStore.js";
 import { storeToRefs } from "pinia";
 
-const { loading, ask } = profileGenerator();
-const { getIdea } = ideaGenerator();
-const { profiles, hasBeenUsed } = storeToRefs(useProfilesStore());
+const profilesStore = useProfilesStore();
+const { profiles, hasBeenUsed, loading } = storeToRefs(profilesStore);
+const { generateProfile } = profilesStore;
 
 const query = ref("");
 
-const userInput = ref();
-
 const profilesContainer = ref();
-
-const generateProfile = async () => {
-  loading.value = true;
-  let queryValue = query.value;
-  if (queryValue.trim().length === 0) {
-    queryValue = await getIdea();
-  }
-  await ask(queryValue);
-  hasBeenUsed.value = true;
-};
 
 watch(
   profiles,
@@ -36,19 +22,18 @@ watch(
 );
 
 watch(loading, (value) => {
-  if (value) return
+  if (value) return;
   setTimeout(() => {
     profilesContainer.value.scrollIntoView({
       behavior: "smooth",
       inline: "start",
-    })
-  }, 500);
+    });
+  }, 100);
 });
-
 </script>
 
 <template>
-  <div class="min-h-screen max-w-full">
+  <div class="min-h-screen max-w-full bg-pink-50">
     <MainBanner :collapsed="hasBeenUsed" />
     <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
       <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
@@ -63,10 +48,9 @@ watch(loading, (value) => {
           :disabled="loading"
           type="text"
           maxlength="50"
-          ref="userInput"
         />
         <button
-          @click="generateProfile"
+          @click="generateProfile(query)"
           :disabled="loading"
           class="px-6 py-2 bg-gray-800 text-pink-400 rounded-lg font-bold"
         >
@@ -79,7 +63,11 @@ watch(loading, (value) => {
     </section>
     <div class="border-t-2" ref="profilesContainer">
       <TransitionGroup tag="section" name="list" class="flex flex-wrap gap-8 justify-center p-8">
-        <ProfileCard v-for="profile in profiles.toReversed()" :key="profile.name" :profile="profile" />
+        <ProfileCard
+          v-for="profile in profiles.toReversed()"
+          :key="profile.name"
+          :profile="profile"
+        />
       </TransitionGroup>
     </div>
   </div>

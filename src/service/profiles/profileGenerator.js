@@ -1,8 +1,7 @@
 import configuration from "../configuration.json";
 import client from "../openaiClient.js";
 import { ref } from "vue";
-import { useProfilesStore } from "@/stores/profilesStore.js";
-import { storeToRefs } from "pinia";
+import lodash from "lodash";
 
 const doRequest = (userQuery) => {
   return client.chat.completions.create({
@@ -16,7 +15,7 @@ const doRequest = (userQuery) => {
           "\nRequired fields: " +
           JSON.stringify(configuration.profiles.requiredFields),
       },
-      { role: "user", content: userQuery }
+      { role: "user", content: userQuery },
     ],
     model: "gpt-3.5-turbo-1106",
     temperature: 1.3,
@@ -38,12 +37,11 @@ const validateProfile = (response) => {
 };
 
 export const profileGenerator = () => {
-  const {addProfile} = useProfilesStore();
-
   const loading = ref(false);
 
   const ask = async (userQuery) => {
     loading.value = true;
+    let result = {};
     let done = false;
     while (!done) {
       try {
@@ -51,7 +49,7 @@ export const profileGenerator = () => {
         const profile = JSON.parse(completion.choices[0].message.content);
 
         if (validateProfile(profile)) {
-          addProfile(profile);
+          result = { uid: lodash.uniqueId("pr"), ...profile };
           done = true;
         }
       } catch (error) {
@@ -59,6 +57,7 @@ export const profileGenerator = () => {
       }
     }
     loading.value = false;
+    return result;
   };
 
   return { loading, ask };

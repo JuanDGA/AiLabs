@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import client from "@/service/openaiClient.js";
+import { useSpeechStore } from "@/stores/speechStore.js";
 
 const voices = {
   male: "echo",
@@ -16,15 +17,26 @@ const getSpeech = async (text, gender) => {
 };
 
 export const generateSpeech = () => {
+  const speechStore = useSpeechStore();
   const loading = ref();
   const audio = ref();
   const playing = ref(false);
 
-  const play = async (text, gender) => {
-    if (audio.value.src === "") {
+  const play = async (id, text, gender) => {
+    const audioSrc = speechStore.requestSpeech(id);
+    if (audioSrc === "") {
       loading.value = true;
       const blob = new Blob([await getSpeech(text, gender)]);
-      audio.value.src = URL.createObjectURL(blob);
+      const src = URL.createObjectURL(blob);
+      audio.value.src = src;
+      speechStore.addSpeech(id, src);
+      audio.value.load();
+      audio.value.play();
+      audio.value.addEventListener("ended", () => (playing.value = false));
+      loading.value = false;
+    } else if (audio.value.src === "") {
+      loading.value = true;
+      audio.value.src = audioSrc;
       audio.value.load();
       audio.value.play();
       audio.value.addEventListener("ended", () => (playing.value = false));
