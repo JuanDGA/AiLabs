@@ -36,10 +36,12 @@ export const generateSpeech = () => {
       audio.value.addEventListener("ended", () => (playing.value = false));
       loading.value = false;
     } else if (audio.value.src === "") {
+      loading.value = true;
       audio.value.src = audioSrc;
       audio.value.load();
       audio.value.play();
       audio.value.addEventListener("ended", () => (playing.value = false));
+      loading.value = false;
     } else {
       audio.value.play();
     }

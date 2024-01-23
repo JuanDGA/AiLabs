@@ -4,7 +4,6 @@ import configuration from "../../service/configuration.json";
 import lodash from "lodash";
 import FlippableComponent from "@/components/profiles/FlippableComponent.vue";
 import { generateSpeech } from "@/service/speechGenerator.js";
-import { useSpeechStore } from "@/stores/speechStore.js";
 
 const props = defineProps({
   profile: {
