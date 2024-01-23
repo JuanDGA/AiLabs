@@ -1,31 +1,17 @@
 <script setup>
-import { profileGenerator } from "@/service/profiles/profileGenerator.js";
 import ProfileCard from "@/components/profiles/ProfileCard.vue";
 import MainBanner from "@/components/profiles/MainBanner.vue";
 import { ref, watch } from "vue";
-import { ideaGenerator } from "@/service/profiles/ideaGenerator.js";
 import { useProfilesStore } from "@/stores/profilesStore.js";
 import { storeToRefs } from "pinia";
 
-const { loading, ask } = profileGenerator();
-const { getIdea } = ideaGenerator();
-const { profiles, hasBeenUsed } = storeToRefs(useProfilesStore());
+const profilesStore = useProfilesStore();
+const { profiles, hasBeenUsed, loading } = storeToRefs(profilesStore);
+const { generateProfile } = profilesStore;
 
 const query = ref("");
 
-const userInput = ref();
-
 const profilesContainer = ref();
-
-const generateProfile = async () => {
-  loading.value = true;
-  let queryValue = query.value;
-  if (queryValue.trim().length === 0) {
-    queryValue = await getIdea();
-  }
-  await ask(queryValue);
-  hasBeenUsed.value = true;
-};
 
 watch(
   profiles,
@@ -42,7 +28,7 @@ watch(loading, (value) => {
       behavior: "smooth",
       inline: "start",
     })
-  }, 500);
+  }, 100);
 });
 
 </script>
@@ -63,10 +49,9 @@ watch(loading, (value) => {
           :disabled="loading"
           type="text"
           maxlength="50"
-          ref="userInput"
         />
         <button
-          @click="generateProfile"
+          @click="generateProfile(query)"
           :disabled="loading"
           class="px-6 py-2 bg-gray-800 text-pink-400 rounded-lg font-bold"
         >
