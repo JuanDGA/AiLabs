@@ -10,7 +10,9 @@ export const useProfilesStore = defineStore("profiles", () => {
 
   const hasBeenUsed = computed(() => profiles.value.length > 0);
 
-  const addProfile = (profile) => profiles.value.push(profile);
+  const addProfile = (profile) => {
+    profiles.value.push(profile);
+  }
 
   const generateProfile = async (idea) => {
     loading.value = true;

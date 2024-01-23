@@ -1,6 +1,7 @@
 import configuration from "../configuration.json";
 import client from "../openaiClient.js";
 import { ref } from "vue";
+import lodash from "lodash";
 
 const doRequest = (userQuery) => {
   return client.chat.completions.create({
@@ -48,7 +49,7 @@ export const profileGenerator = () => {
         const profile = JSON.parse(completion.choices[0].message.content);
 
         if (validateProfile(profile)) {
-          result = profile;
+          result = { uid: lodash.uniqueId("pr"), ...profile };
           done = true;
         }
       } catch (error) {
