@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import client from "@/service/openaiClient.js";
 import configuration from "@/service/configuration.json";
 
 export const useObjectStore = defineStore("objects", () => {
   const objects = ref([]);
   const loading = ref(false);
+
+  const hasBeenUsed = computed(() => objects.value.length > 0);
 
   const requestRandomObject = async () => {
     loading.value = true;
@@ -45,5 +47,5 @@ export const useObjectStore = defineStore("objects", () => {
     loading.value = false;
   }
 
-  return {objects, loading, requestRandomObject}
+  return {objects, loading, hasBeenUsed, requestRandomObject}
 });
