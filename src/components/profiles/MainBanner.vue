@@ -15,7 +15,11 @@ const title = ref("Profile It");
 
 <template>
   <transition tag="div" name="banner">
-    <header v-if="isCollapsed" class="w-full bg-pink-400 py-4 px-4 flex justify-between items-center" key="header">
+    <header
+      v-if="isCollapsed"
+      class="w-full bg-pink-400 py-4 px-4 flex justify-between items-center"
+      key="header"
+    >
       <h1 class="text-lg font-bold tracking-tighter text-[#1f2937]">{{ title }}</h1>
       <router-link to="/" class="text-[#1f2937] font-bold">Home</router-link>
     </header>
@@ -31,7 +35,9 @@ const title = ref("Profile It");
         </p>
         <p class="mt-4 text-lg md:text-xl lg:text-2xl">🧠 ➡️ 👤</p>
       </div>
-      <router-link to="/" class="text-[#1f2937] font-semibold absolute top-5 right-5">Home</router-link>
+      <router-link to="/" class="text-[#1f2937] font-semibold absolute top-5 right-5"
+        >Home</router-link
+      >
     </section>
   </transition>
 </template>

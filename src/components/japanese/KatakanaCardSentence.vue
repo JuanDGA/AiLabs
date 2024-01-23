@@ -1,30 +1,34 @@
 <script setup>
-  import { generateSpeech } from '@/service/speechGenerator.js'
-  import { computed } from 'vue'
-  import GIcon from '@/components/common/GIcon.vue'
+import { generateSpeech } from "@/service/speechGenerator.js";
+import { computed } from "vue";
+import GIcon from "@/components/common/GIcon.vue";
 
-  const props = defineProps({
-    index: {
-      type: String,
-      required: true,
-    },
-    sentence: {
-      type: Object,
-      required: true,
-    }
-  });
+const props = defineProps({
+  index: {
+    type: String,
+    required: true,
+  },
+  sentence: {
+    type: Object,
+    required: true,
+  },
+  uid: {
+    type: String,
+    required: true,
+  },
+});
 
-  const katakana = computed(() => props.sentence.japanese);
+const katakana = computed(() => props.sentence.japanese);
 
-  const {play, pause, playing, loading, audio} = generateSpeech();
+const { play, pause, playing, loading, audio } = generateSpeech();
 
-  const handleListening = () => {
-    if (playing.value) {
-      pause();
-    } else {
-      play(katakana.value, "male");
-    }
-  };
+const handleListening = () => {
+  if (playing.value) {
+    pause();
+  } else {
+    play(props.uid, katakana.value, "male");
+  }
+};
 </script>
 
 <template>
@@ -45,6 +49,4 @@
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

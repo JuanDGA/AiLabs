@@ -39,9 +39,9 @@
       "name": "The name entered by the user",
       "katakana": "here the katakana",
       "sentences": {
-        "1": {"japanese": "The japanese sentence", "english": "The english translation"},
-        "2": {"japanese": "The japanese sentence", "english": "The english translation"},
-        "3": {"japanese": "The japanese sentence", "english": "The english translation"}
+        "1": { "japanese": "The japanese sentence", "english": "The english translation" },
+        "2": { "japanese": "The japanese sentence", "english": "The english translation" },
+        "3": { "japanese": "The japanese sentence", "english": "The english translation" }
       }
     }
   }

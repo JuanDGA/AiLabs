@@ -31,7 +31,8 @@ const handleListening = () => {
     <flippable-component>
       <template #front>
         <div
-          class="rounded-lg rounded-tr-3xl border bg-purple-100 shadow-2xl w-full max-w-md" style="width: 90vw; height: 800px"
+          class="rounded-lg rounded-tr-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
+          style="width: 90vw; height: 800px"
         >
           <div class="flex-col p-3 flex items-center gap-2">
             <h3 class="font-semibold tracking-tight text-lg">
@@ -156,7 +157,8 @@ const handleListening = () => {
       </template>
       <template #back>
         <div
-          class="rounded-lg rounded-tl-3xl border bg-purple-100 shadow-2xl w-full max-w-md" style="height: 800px"
+          class="rounded-lg rounded-tl-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
+          style="height: 800px"
         >
           <div class="flex-col p-3 flex items-center gap-2">
             <h3 class="font-semibold tracking-tight text-lg">

@@ -1,23 +1,28 @@
 <script setup>
-import { computed, ref } from 'vue'
-  import { katakanaGenerator } from '@/service/japanese/katakanaGenerator.js'
-import KatakanaCard from '@/components/japanese/KatakanaCard.vue'
-import JapaneseBanner from '@/components/japanese/JapaneseBanner.vue'
-import { storeToRefs } from 'pinia'
-import { useJapaneseStore } from '@/stores/japaneseStore.js'
+import { computed, ref, watch } from "vue";
+import KatakanaCard from "@/components/japanese/KatakanaCard.vue";
+import JapaneseBanner from "@/components/japanese/JapaneseBanner.vue";
+import { storeToRefs } from "pinia";
+import { useJapaneseStore } from "@/stores/japaneseStore.js";
 
-  const name = ref("");
+const japaneseStore = useJapaneseStore();
+const { katakanas, hasBeenUsed, loading } = storeToRefs(japaneseStore);
+const { generateKatakana } = japaneseStore;
 
-  const {loading, ask} = katakanaGenerator();
+const name = ref("");
+const katakanasContainer = ref();
 
-  const {katakanas, hasBeenUsed} = storeToRefs(useJapaneseStore());
+const canGenerate = computed(() => name.value.trim().length > 0 && !loading.value);
 
-  const generateKatakana = async () => {
-    await ask(name.value);
-    hasBeenUsed.value = true;
-  };
-
-  const canGenerate = computed(() => name.value.trim().length > 0 && !loading.value);
+watch(loading, (value) => {
+  if (value) return;
+  setTimeout(() => {
+    katakanasContainer.value.scrollIntoView({
+      behavior: "smooth",
+      inline: "start",
+    });
+  }, 100);
+});
 </script>
 
 <template>
@@ -38,15 +43,15 @@ import { useJapaneseStore } from '@/stores/japaneseStore.js'
           ref="userInput"
         />
         <button
-          @click="generateKatakana"
-          :disabled="loading"
+          @click="generateKatakana(name)"
+          :disabled="!canGenerate"
           class="px-6 py-2 bg-gray-800 text-red-400 rounded-lg font-bold"
         >
           {{ loading ? "Generating..." : "Generate" }}
         </button>
       </div>
     </section>
-    <div>
+    <div class="border-t-2" ref="katakanasContainer">
       <section class="flex flex-wrap gap-8 justify-center p-8">
         <KatakanaCard v-for="katakana in katakanas" :key="katakana.katakana" :katakana="katakana" />
       </section>
@@ -54,6 +59,4 @@ import { useJapaneseStore } from '@/stores/japaneseStore.js'
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

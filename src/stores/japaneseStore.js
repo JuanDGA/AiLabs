@@ -1,11 +1,19 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia";
+import { computed, ref } from "vue";
+import { katakanaGenerator } from "@/service/japanese/katakanaGenerator.js";
 
 export const useJapaneseStore = defineStore("japanese", () => {
-  const hasBeenUsed = ref(false);
   const katakanas = ref([]);
+  const { loading, ask } = katakanaGenerator();
 
   const addKatakana = (it) => katakanas.value.push(it);
 
-  return {hasBeenUsed, katakanas, addKatakana}
+  const hasBeenUsed = computed(() => katakanas.value.length > 0);
+
+  const generateKatakana = async (name) => {
+    const katakana = await ask(name);
+    addKatakana(katakana);
+  };
+
+  return { hasBeenUsed, katakanas, loading, generateKatakana };
 });

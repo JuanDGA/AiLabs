@@ -5,14 +5,14 @@ import { ideaGenerator } from "@/service/profiles/ideaGenerator.js";
 
 export const useProfilesStore = defineStore("profiles", () => {
   const profiles = ref([]);
-  const {loading, ask} = profileGenerator();
-  const {getIdea} = ideaGenerator();
+  const { loading, ask } = profileGenerator();
+  const { getIdea } = ideaGenerator();
 
   const hasBeenUsed = computed(() => profiles.value.length > 0);
 
   const addProfile = (profile) => {
     profiles.value.push(profile);
-  }
+  };
 
   const generateProfile = async (idea) => {
     loading.value = true;
@@ -24,5 +24,5 @@ export const useProfilesStore = defineStore("profiles", () => {
     addProfile(profile);
   };
 
-  return {profiles, hasBeenUsed, loading, generateProfile}
+  return { profiles, hasBeenUsed, loading, generateProfile };
 });

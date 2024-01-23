@@ -15,7 +15,7 @@ const doRequest = (userQuery) => {
           "\nRequired fields: " +
           JSON.stringify(configuration.profiles.requiredFields),
       },
-      { role: "user", content: userQuery }
+      { role: "user", content: userQuery },
     ],
     model: "gpt-3.5-turbo-1106",
     temperature: 1.3,

@@ -6,13 +6,13 @@ export const useSpeechStore = defineStore("speech", () => {
 
   const requestSpeech = (id) => {
     const elem = speech.value.find((it) => it.id === id);
-    if (elem === undefined) return ""
-    return elem.src;
-  }
+    if (elem === undefined) return "";
+    return elem.url;
+  };
 
   const addSpeech = (id, url) => {
-    speech.value.push({id, url})
-  }
+    speech.value.push({ id, url });
+  };
 
-  return {requestSpeech, addSpeech};
+  return { requestSpeech, addSpeech };
 });

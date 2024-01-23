@@ -24,11 +24,10 @@ export const generateSpeech = () => {
 
   const play = async (id, text, gender) => {
     const audioSrc = speechStore.requestSpeech(id);
-
     if (audioSrc === "") {
       loading.value = true;
       const blob = new Blob([await getSpeech(text, gender)]);
-      const src = URL.createObjectURL(blob)
+      const src = URL.createObjectURL(blob);
       audio.value.src = src;
       speechStore.addSpeech(id, src);
       audio.value.load();

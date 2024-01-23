@@ -43,5 +43,4 @@ const flipped = ref(false);
   opacity: 0;
   transform: rotateY(0deg);
 }
-
 </style>

@@ -22,15 +22,14 @@ watch(
 );
 
 watch(loading, (value) => {
-  if (value) return
+  if (value) return;
   setTimeout(() => {
     profilesContainer.value.scrollIntoView({
       behavior: "smooth",
       inline: "start",
-    })
+    });
   }, 100);
 });
-
 </script>
 
 <template>
@@ -64,7 +63,11 @@ watch(loading, (value) => {
     </section>
     <div class="border-t-2" ref="profilesContainer">
       <TransitionGroup tag="section" name="list" class="flex flex-wrap gap-8 justify-center p-8">
-        <ProfileCard v-for="profile in profiles.toReversed()" :key="profile.name" :profile="profile" />
+        <ProfileCard
+          v-for="profile in profiles.toReversed()"
+          :key="profile.name"
+          :profile="profile"
+        />
       </TransitionGroup>
     </div>
   </div>
