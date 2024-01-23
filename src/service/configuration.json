@@ -46,5 +46,8 @@
         "3": { "japanese": "The japanese sentence", "hiragana": "here the hiragana", "normal_hiragana": "Here the normal hiragana using english letters, not japanese symbols", "english": "The english translation" }
       }
     }
+  },
+  "objects": {
+    "prompt": "Generate a concise description of a tangible, everyday object commonly found either at home or in a natural setting. Emphasize its physical attributes, detailing aspects like color, shape, and texture. Include specific dimensions when relevant, and highlight unique features contributing to its visual appeal or functionality. Use precise language to convey tactile sensations associated with its texture, whether smooth, rough, or textured. Avoid predictability and abstraction for realism. Engage the reader's senses with vivid portrayals, creating a clear mental image within a limit of 1000 characters. Consider including contextual information about its usual placement or purpose to enrich the description. Aim for variety, avoiding repetition of the same type of object."
   }
 }
