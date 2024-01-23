@@ -34,14 +34,16 @@
     ]
   },
   "japanese": {
-    "prompt": "Given a name, you will provide the katakana of that name in japanese. Provide the three top sentences that the person could use to introduce himself. The sentences must be in japanese and in English. The response must be in json format.",
+    "prompt": "Given a name, you will provide the katakana and the hiragana of that name in Japanese. Additionally, provide the three top sentences that the person could use to introduce themselves, written in both normal hiragana (using English letters) and hiragana. The sentences must be in Japanese and in English.\n\nFor example:\nName: Camilo\nNice to meet you, my name is Camilo.\nHiragana: はじめまして、かみろともうします。\nNormal Hiragana: Hajimemashite, watashinonamaeha kamirodesu.\n\nNote: Normal hiragana should represent the pronunciation using English letters. The response must be in json format.",
     "katakanaTemplate": {
       "name": "The name entered by the user",
       "katakana": "here the katakana",
+      "hiragana": "here the hiragana",
+      "normal_hiragana": "Here the normal hiragana using english letters, not japanese symbols",
       "sentences": {
-        "1": { "japanese": "The japanese sentence", "english": "The english translation" },
-        "2": { "japanese": "The japanese sentence", "english": "The english translation" },
-        "3": { "japanese": "The japanese sentence", "english": "The english translation" }
+        "1": { "japanese": "The japanese sentence", "hiragana": "here the hiragana", "normal_hiragana": "Here the normal hiragana using english letters, not japanese symbols", "english": "The english translation" },
+        "2": { "japanese": "The japanese sentence", "hiragana": "here the hiragana", "normal_hiragana": "Here the normal hiragana using english letters, not japanese symbols", "english": "The english translation" },
+        "3": { "japanese": "The japanese sentence", "hiragana": "here the hiragana", "normal_hiragana": "Here the normal hiragana using english letters, not japanese symbols", "english": "The english translation" }
       }
     }
   }

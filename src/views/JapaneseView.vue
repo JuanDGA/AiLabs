@@ -53,7 +53,7 @@ watch(loading, (value) => {
     </section>
     <div class="border-t-2" ref="katakanasContainer">
       <section class="flex flex-wrap gap-8 justify-center p-8">
-        <KatakanaCard v-for="katakana in katakanas" :key="katakana.katakana" :katakana="katakana" />
+        <KatakanaCard v-for="katakana in katakanas.toReversed()" :key="katakana.katakana" :katakana="katakana" />
       </section>
     </div>
   </div>

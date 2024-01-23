@@ -33,20 +33,26 @@ const handleListening = () => {
 
 <template>
   <div class="border p-4 rounded-md bg-gray-200 relative">
-    <p class="text-base font-semibold mb-2">{{ index }}. Japanese Sentence:</p>
-    <p class="text-lg">{{ sentence.japanese }}</p>
-    <p class="text-base font-semibold mt-2">English Translation:</p>
-    <p class="text-lg">{{ sentence.english }}</p>
+    <p class="text-sm italic">{{ sentence.hiragana }}</p>
+    <p class="text-xl">{{ sentence.japanese }}</p>
+    <p class="text-sm italic">{{ sentence.normal_hiragana }}</p>
+    <div class="flex items-end justify-between mt-2 border-t-2 border-gray-400 pt-2">
+      <p class="text-sm italic">{{ sentence.english }}</p>
+      <button
+        @click="handleListening"
+        class="p-1 bg-gray-300 text-black rounded-full hover:bg-gray-400 focus:outline-none focus:shadow-outline-gray active:bg-gray-600 transition duration-300 ease-in-out"
+      >
+        <span class="sr-only">Listen</span>
+        <GIcon v-if="loading" icon="hourglass_empty" class="text-md" />
+        <GIcon v-else-if="playing" icon="pause" class="text-md" />
+        <GIcon v-else icon="volume_up" class="text-md" />
+      </button>
+    </div>
+
     <audio ref="audio" class="hidden" />
-    <button
-      @click="handleListening"
-      class="absolute top-1 right-1 p-1 bg-blue-100 text-black rounded-full hover:bg-blue-200 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300 ease-in-out"
-    >
-      <GIcon v-if="loading" icon="hourglass_empty" />
-      <GIcon v-else-if="playing" icon="pause" />
-      <GIcon v-else icon="volume_up" />
-    </button>
   </div>
 </template>
 
-<style scoped></style>
+
+
+

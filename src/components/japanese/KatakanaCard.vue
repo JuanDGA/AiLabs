@@ -25,17 +25,21 @@ const handleListening = () => {
 <template>
   <div class="max-w-md bg-white p-8 rounded-md shadow-lg relative">
     <audio class="hidden" ref="audio" />
+
     <h2 class="text-2xl font-bold mb-4">{{ katakana.name }}</h2>
+
     <div class="mb-6">
-      <p class="text-lg font-semibold mb-2">Katakana:</p>
-      <p class="text-xl">{{ katakana.katakana }}</p>
+      <p class="text-sm italic">{{ katakana.hiragana }}</p>
+      <p class="text-xl font-semibold">{{ katakana.katakana }}</p>
+      <p class="text-sm italic">{{ katakana.normal_hiragana }}</p>
       <button
         @click="handleListening"
-        class="absolute top-1 right-1 p-1 bg-gray-100 text-black rounded-full hover:bg-gray-200 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300 ease-in-out"
+        class="absolute top-2 right-2 p-1 bg-red-400 text-white rounded-full hover:bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300 ease-in-out"
       >
-        <GIcon v-if="loading" icon="hourglass_empty" />
-        <GIcon v-else-if="playing" icon="pause" />
-        <GIcon v-else icon="volume_up" />
+        <span class="sr-only">Listen</span>
+        <GIcon v-if="loading" icon="hourglass_empty" class="text-xl" />
+        <GIcon v-else-if="playing" icon="pause" class="text-xl" />
+        <GIcon v-else icon="volume_up" class="text-xl" />
       </button>
     </div>
 
@@ -53,3 +57,4 @@ const handleListening = () => {
     </div>
   </div>
 </template>
+
