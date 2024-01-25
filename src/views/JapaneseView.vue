@@ -10,14 +10,14 @@ const { katakanas, hasBeenUsed, loading } = storeToRefs(japaneseStore);
 const { generateKatakana } = japaneseStore;
 
 const name = ref("");
-const katakanasContainer = ref();
+const shortcut = ref();
 
 const canGenerate = computed(() => name.value.trim().length > 0 && !loading.value);
 
 watch(loading, (value) => {
   if (value) return;
   setTimeout(() => {
-    katakanasContainer.value.scrollIntoView({
+    shortcut.value.scrollIntoView({
       behavior: "smooth",
       inline: "start",
     });
@@ -26,17 +26,18 @@ watch(loading, (value) => {
 </script>
 
 <template>
-  <div class="min-h-screen max-w-full bg-red-50">
+  <div class="min-h-screen max-w-full bg-red-50 pb-5 md:pb-8 lg:pb-18">
     <JapaneseBanner :collapsed="hasBeenUsed" />
-    <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
+    <section class="mx-auto container px-5 md:px-12 pb-5 md:pb-8 lg:pb-18 pt-0">
       <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
-        Write your name and start learning.
+        Write your name ...
       </p>
-      <div class="flex flex-col gap-4 px-5 items-center justify-center">
+      <div class="flex flex-col gap-4 px-5 items-center justify-center" ref="shortcut">
         <input
+          @keyup.enter="generateKatakana(name)"
           v-model="name"
           class="flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"
-          placeholder="Name here..."
+          placeholder="eg. Carlos"
           :disabled="loading"
           type="text"
           maxlength="50"
@@ -51,7 +52,7 @@ watch(loading, (value) => {
         </button>
       </div>
     </section>
-    <div class="border-t-2" ref="katakanasContainer">
+    <div class="border-t-2">
       <section class="flex flex-wrap gap-8 justify-center p-8">
         <KatakanaCard v-for="katakana in katakanas.toReversed()" :key="katakana.katakana" :katakana="katakana" />
       </section>

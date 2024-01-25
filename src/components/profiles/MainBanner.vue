@@ -10,7 +10,7 @@ const props = defineProps({
 
 const isCollapsed = computed(() => props.collapsed);
 
-const title = ref("Profile It");
+const title = ref("Present Yourself");
 </script>
 
 <template>
@@ -28,15 +28,16 @@ const title = ref("Profile It");
         <h1
           class="text-4xl font-bold tracking-tighter text-[#1f2937] sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          {{ title }}: From Ideas to Profiles
+          {{ title }}
         </h1>
         <p class="mt-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
-          Let's make an idea shine with creativity and fun!
+          Generate a person, real or not and be ready to explain his profile using your new language skills
         </p>
         <p class="mt-4 text-lg md:text-xl lg:text-2xl">🧠 ➡️ 👤</p>
       </div>
       <router-link to="/" class="text-[#1f2937] font-semibold absolute top-5 right-5"
-        >Home</router-link
+      >Home
+      </router-link
       >
     </section>
   </transition>

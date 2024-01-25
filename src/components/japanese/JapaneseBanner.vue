@@ -28,10 +28,10 @@ const title = ref("Japanese");
         <h1
           class="text-4xl font-bold tracking-tighter text-[#1f2937] sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          {{ title }}: Introducing Yourself
+          {{ title }}: Learn your name
         </h1>
         <p class="mt-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
-          Learn how to write your name and how to introduce yourself in japanese.
+          How to write your name in Japanese and how to introduce yourself.
         </p>
       </div>
       <router-link to="/" class="text-[#1f2937] font-semibold absolute top-5 right-5"

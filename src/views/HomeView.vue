@@ -10,17 +10,17 @@ import ToolCard from "@/components/home/ToolCard.vue";
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <ToolCard
-        title="ProfileIt"
+        title="Present Yourself"
         description="Get a random person profile, or convert any idea into one."
         to="/profiles"
       />
       <ToolCard
-        title="Japanese"
+        title="Japanese Names"
         description="Learn how to write your name and how to introduce yourself in japanese"
         to="/japanese"
       />
       <ToolCard
-        title="DayToDay"
+        title="Vocabulary: Objects"
         description="Get images of random day to day life objects."
         to="/objects"
       />
