@@ -32,7 +32,7 @@ watch(loading, (value) => {
       <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
         Write your name ...
       </p>
-      <div class="flex flex-col gap-4 px-5 items-center justify-center" ref="shortcut">
+      <div class="flex flex-col gap-4 px-5 items-center justify-center pt-2" ref="shortcut">
         <input
           @keyup.enter="generateKatakana(name)"
           v-model="name"

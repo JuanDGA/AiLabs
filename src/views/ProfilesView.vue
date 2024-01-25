@@ -42,7 +42,7 @@ watch(loading, (value) => {
         A famous actress, your favorite book writer or youtuber. AI will provide
         you your new profile
       </p>
-      <div class="flex flex-col gap-4 px-5 items-center justify-center" ref="shortcut">
+      <div class="flex flex-col gap-4 px-5 pt-2 items-center justify-center" ref="shortcut">
         <input
           v-model="query"
           class="flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"

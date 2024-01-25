@@ -29,9 +29,7 @@ const handleListening = () => {
     <h2 class="text-2xl font-bold mb-4">{{ katakana.name }}</h2>
 
     <div class="mb-6">
-      <p class="text-sm italic">{{ katakana.hiragana }}</p>
-      <p class="text-xl font-semibold">{{ katakana.katakana }}</p>
-      <p class="text-sm italic">{{ katakana.normal_hiragana }}</p>
+      <p class="text-3xl font-semibold">{{ katakana.katakana }}</p>
       <button
         @click="handleListening"
         class="absolute top-2 right-2 p-1 bg-red-400 text-white rounded-full hover:bg-red-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300 ease-in-out"
@@ -44,7 +42,7 @@ const handleListening = () => {
     </div>
 
     <div>
-      <p class="text-lg font-semibold mb-2">Sentences:</p>
+      <p class="text-lg font-semibold mb-2">Present yourself</p>
       <div class="space-y-4">
         <KatakanaCardSentence
           v-for="(sentence, index) in katakana.sentences"
