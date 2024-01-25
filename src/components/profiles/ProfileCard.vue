@@ -26,12 +26,13 @@ const handleListening = () => {
 <template>
   <div>
     <audio class="hidden" ref="audio" />
-    <flippable-component>
-      <template #front>
-        <div
-          class="rounded-lg rounded-tr-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
-          style="width: 90vw; max-height: 85vh"
-        >
+
+    <div
+      class="rounded-lg rounded-tl-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
+      style="width: 90vw; min-height: 65vh; max-height: 85vh"
+    >
+      <flippable-component>
+        <template #front>
           <div class="flex-col pt-3 flex items-center gap-2">
             <h3 class="font-semibold tracking-tight text-lg">
               {{ profile.name }} {{ profile.last_name }}
@@ -131,13 +132,8 @@ const handleListening = () => {
               </ul>
             </div>
           </div>
-        </div>
-      </template>
-      <template #back>
-        <div
-          class="rounded-lg rounded-tl-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
-          style="height: 800px"
-        >
+        </template>
+        <template #back>
           <div class="flex-col p-3 flex items-center gap-2">
             <h3 class="font-semibold tracking-tight text-lg">
               {{ profile.name }} {{ profile.last_name }}
@@ -153,8 +149,8 @@ const handleListening = () => {
               {{ loading ? "Generating..." : playing ? "Pause" : "Listen" }}
             </button>
           </div>
-        </div>
-      </template>
-    </flippable-component>
+        </template>
+      </flippable-component>
+    </div>
   </div>
 </template>
