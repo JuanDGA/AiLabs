@@ -1,6 +1,5 @@
 <script setup>
 import { computed } from "vue";
-import configuration from "../../service/configuration.json";
 import lodash from "lodash";
 import FlippableComponent from "@/components/profiles/FlippableComponent.vue";
 import { generateSpeech } from "@/service/speechGenerator.js";
@@ -8,7 +7,6 @@ import { generateSpeech } from "@/service/speechGenerator.js";
 const props = defineProps({
   profile: {
     type: Object,
-    default: configuration.profiles.profileTemplate,
   },
 });
 
@@ -32,68 +30,57 @@ const handleListening = () => {
       <template #front>
         <div
           class="rounded-lg rounded-tr-3xl border bg-purple-100 shadow-2xl w-full max-w-md"
-          style="width: 90vw; height: 800px"
+          style="width: 90vw; max-height: 85vh"
         >
-          <div class="flex-col p-3 flex items-center gap-2">
+          <div class="flex-col pt-3 flex items-center gap-2">
             <h3 class="font-semibold tracking-tight text-lg">
               {{ profile.name }} {{ profile.last_name }}
             </h3>
-            <p class="text-sm">{{ profile.profession }}</p>
+            <p class="text-sm">{{ profile.nationality }}</p>
           </div>
           <div class="p-6 space-y-4">
             <div class="grid grid-cols-2 gap-2">
-              <div class="space-y-1">
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="nationality"
-                >
-                  Nationality
-                </label>
-                <p id="nationality" class="text-sm">
-                  {{ profile.nationality }}
-                </p>
+              <div class="grid grid-rows-3 gap-2">
+                <div class="space-y-1">
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    for="profession"
+                  >
+                    <u>Profession</u>
+                  </label>
+                  <p id="profession" class="text-sm">
+                    {{ profile.profession }}
+                  </p>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    for="age"
+                  >
+                    <u>Age</u>
+                  </label>
+                  <p id="age" class=" text-sm">
+                    {{ profile.age }}
+                  </p>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    for="gender"
+                  >
+                    <u>Gender</u>
+                  </label>
+                  <p id="gender" class="text-sm">
+                    {{ profile.gender }}
+                  </p>
+                </div>
               </div>
-              <div class="space-y-1">
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="age"
-                >
-                  Age
-                </label>
-                <p id="age" class="text-sm">
-                  {{ profile.age }}
-                </p>
-              </div>
-              <div class="space-y-1">
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="gender"
-                >
-                  Gender
-                </label>
-                <p id="gender" class="text-sm">
-                  {{ profile.gender }}
-                </p>
-              </div>
-              <div class="space-y-1">
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="country"
-                >
-                  Country
-                </label>
-                <p id="country" class="text-sm">
-                  {{ profile.country }}
-                </p>
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-2">
               <div class="space-y-1">
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   for="hobbies"
                 >
-                  Hobbies
+                  <u>Hobbies</u>
                 </label>
                 <ul id="hobbies" class="px-3 text-sm list-disc">
                   <li v-for="(hobby, index) in profile.hobbies" :key="index">
@@ -101,23 +88,14 @@ const handleListening = () => {
                   </li>
                 </ul>
               </div>
-              <div class="space-y-1">
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="place"
-                >
-                  Place
-                </label>
-                <p id="place" class="text-sm">
-                  {{ profile.place }}
-                </p>
-              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
               <div class="space-y-1">
                 <label
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   for="likes"
                 >
-                  Likes
+                  <u>Likes</u>
                 </label>
                 <ul id="likes" class="px-3 text-sm list-disc">
                   <li v-for="(like, index) in profile.likes" :key="index">
@@ -130,7 +108,7 @@ const handleListening = () => {
                   class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   for="dislikes"
                 >
-                  Dislikes
+                  <u>Dislikes</u>
                 </label>
                 <ul id="dislikes" class="px-3 text-sm list-disc">
                   <li v-for="(dislike, index) in profile.dislikes" :key="index">
@@ -144,7 +122,7 @@ const handleListening = () => {
                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="activities"
               >
-                Activities
+                <u>Activities</u>
               </label>
               <ul id="activities" class="px-3 text-sm list-disc">
                 <li v-for="(activity, index) in profile.usual_activities" :key="index">
@@ -164,7 +142,6 @@ const handleListening = () => {
             <h3 class="font-semibold tracking-tight text-lg">
               {{ profile.name }} {{ profile.last_name }}
             </h3>
-            <p class="text-sm">Presentation</p>
           </div>
           <div class="p-6 space-y-4">
             <p>{{ profile.introduce_yourself }}</p>

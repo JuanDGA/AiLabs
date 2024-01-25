@@ -1,12 +1,10 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { profileGenerator } from "@/service/profiles/profileGenerator.js";
-import { ideaGenerator } from "@/service/profiles/ideaGenerator.js";
 
 export const useProfilesStore = defineStore("profiles", () => {
   const profiles = ref([]);
   const { loading, ask } = profileGenerator();
-  const { getIdea } = ideaGenerator();
 
   const hasBeenUsed = computed(() => profiles.value.length > 0);
 
@@ -17,8 +15,8 @@ export const useProfilesStore = defineStore("profiles", () => {
   const generateProfile = async (idea) => {
     loading.value = true;
     let query = idea;
-    if (query.trim().length === 0) {
-      query = await getIdea();
+    if (query.trim().length.isEmpty) {
+      query = "Totally random and funny";
     }
     const profile = await ask(query);
     addProfile(profile);

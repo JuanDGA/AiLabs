@@ -9,11 +9,10 @@ const doRequest = (userQuery) => {
       {
         role: "system",
         content:
-          configuration.profiles.prompt + "Do it in japanese" +
-          "\nProfile json schema: " +
+          configuration.profiles.prompt +
+          "\n\nProfile json schema: \n\n```\n" +
           JSON.stringify(configuration.profiles.profileTemplate) +
-          "\nRequired fields: " +
-          JSON.stringify(configuration.profiles.requiredFields),
+          "\n```\n",
       },
       { role: "user", content: userQuery },
     ],

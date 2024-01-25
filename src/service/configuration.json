@@ -10,28 +10,11 @@
       "gender": "String",
       "hobbies": [],
       "profession": "String",
-      "country": "String",
-      "place": "String",
       "likes": [],
       "dislikes": [],
       "usual_activities": [],
       "introduce_yourself": "String"
-    },
-    "requiredFields": [
-      "name",
-      "last_name",
-      "nationality",
-      "age",
-      "gender",
-      "hobbies",
-      "profession",
-      "country",
-      "place",
-      "likes",
-      "dislikes",
-      "usual_activities",
-      "introduce_yourself"
-    ]
+    }
   },
   "japanese": {
     "prompt": "Given a name, you will provide that name in Japanese. Additionally, provide three sentences that a person could use to introduce their name, written in both romanji and hiragana. The sentences must be in Japanese and in English.\n\nFor example:\nName: Camilo\nNice to meet you, my name is Camilo.\nHiragana: はじめまして、[Camilo] ともうします。\nRomanji: Hajimemashite, watashi no namae ha Camilo desu.\n\nThe response must be in json format.",

@@ -36,7 +36,8 @@ watch(loading, (value) => {
   <div class="min-h-screen max-w-full bg-pink-50">
     <MainBanner :collapsed="hasBeenUsed" />
     <section class="mx-auto container px-5 md:px-12 py-5 md:py-8 lg:py-18">
-      <p class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
+      <p :style="hasBeenUsed? 'display: none':''"
+         class="text-center my-4 text-lg text-[#374151] md:text-xl lg:text-2xl">
         Be creative, who do you want to be...
         <br>
         A famous actress, your favorite book writer or youtuber. AI will provide
@@ -44,9 +45,10 @@ watch(loading, (value) => {
       </p>
       <div class="flex flex-col gap-4 px-5 pt-2 items-center justify-center" ref="shortcut">
         <input
+          @keyup.enter="generateProfile(query)"
           v-model="query"
           class="flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"
-          placeholder="Albert Einstein"
+          placeholder="describe your person"
           :disabled="loading"
           type="text"
           maxlength="50"
