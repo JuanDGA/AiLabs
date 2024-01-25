@@ -46,7 +46,7 @@ watch(loading, (value) => {
         <input
           v-model="query"
           class="flex-1 px-4 py-2 border border-gray-900 rounded-lg text-[#374151] focus:outline-none focus:border-[#1f2937]"
-          placeholder="Alber Einstein"
+          placeholder="Albert Einstein"
           :disabled="loading"
           type="text"
           maxlength="50"
@@ -59,7 +59,7 @@ watch(loading, (value) => {
           {{ loading ? "Generating..." : "Generate" }}
         </button>
       </div>
-      <p v-if="hasBeenUsed" class="text-center font-light mt-2">
+      <p v-if="hasBeenUsed" class="text-center text-sm font-light mt-2">
         You can click a profile to find an "Introduce yourself"
       </p>
     </section>

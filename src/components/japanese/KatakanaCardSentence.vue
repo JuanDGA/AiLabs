@@ -35,7 +35,7 @@ const handleListening = () => {
   <div class="border p-4 rounded-md bg-gray-200 relative">
     <p class="text-sm italic">{{ sentence.hiragana }}</p>
     <p class="text-xl">{{ sentence.japanese }}</p>
-    <p class="text-sm italic">{{ sentence.normal_hiragana }}</p>
+    <p class="text-sm italic">{{ sentence.romanji }}</p>
     <div class="flex items-end justify-between mt-2 border-t-2 border-gray-400 pt-2">
       <p class="text-sm italic">{{ sentence.english }}</p>
       <button
